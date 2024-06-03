@@ -1,0 +1,20 @@
+{
+  "name": "wordle-api",
+  "version": "1.0.0",
+  "license": "ISC",
+  "author": "Guilherme Farias",
+  "description": "A Wordle API clone",
+  "homepage": "https://github.com/Guilherme-Farias/wordle-api#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guilherme-Farias/wordle-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Guilherme-Farias/wordle-api/issues"
+  },
+  "keywords": [
+    "wordle",
+    "api",
+    "game"
+  ]
+}
