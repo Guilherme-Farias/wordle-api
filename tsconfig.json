@@ -8,7 +8,11 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@tests/*": ["./tests/*"]
     },
+    "types": [
+      "vitest/globals"
+    ]
   }
 }
