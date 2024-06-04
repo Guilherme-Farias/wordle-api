@@ -21,6 +21,7 @@
   ],
   "rules": {
     "prettier/prettier": "error",
+    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -54,7 +55,11 @@
       }
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx",
+        ".d.ts"
+      ]
     }
   }
 }
