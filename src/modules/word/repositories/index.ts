@@ -1,1 +1,1 @@
-export * from './word-repository';
+export * from './word.repository';
