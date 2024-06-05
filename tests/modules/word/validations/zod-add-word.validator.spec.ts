@@ -1,5 +1,3 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-
 import { ZodAddWordValidator } from '@/modules/word/validations';
 import { expectValidationToThrowProps } from '@tests/helpers/functions';
 import { makeAddWordControllerRequest } from '@tests/helpers/mocks';

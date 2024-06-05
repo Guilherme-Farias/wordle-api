@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker';
 import * as dateFns from 'date-fns';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { DateFnsProvider } from '@/shared/providers/date-provider';
 import { throwError } from '@tests/helpers/mocks';
