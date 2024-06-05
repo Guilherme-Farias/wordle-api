@@ -32,9 +32,12 @@ describe('DateFnsProvider', () => {
     });
 
     it('should throw if parseISO throws', () => {
-      vi.spyOn(dateFns, 'parseISO').mockImplementationOnce(throwError);
-
-      expect(() => sut.parseISO(date)).toThrow();
+      vi.spyOn(dateFns, 'parseISO').mockImplementationOnce(
+        throwError('parseISO_error'),
+      );
+      expect(() => sut.parseISO(date)).toThrowErrorMatchingInlineSnapshot(
+        `[Error: parseISO_error]`,
+      );
     });
   });
 });

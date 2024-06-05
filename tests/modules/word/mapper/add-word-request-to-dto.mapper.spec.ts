@@ -29,8 +29,12 @@ describe('AddWordRequestToDTOMapper', () => {
   });
 
   it('should rethrow if DateProvider.parseISO throws', () => {
-    dateProviderMock.parseISO.mockImplementationOnce(throwError);
-    expect(() => sut.map(dto)).toThrow();
+    dateProviderMock.parseISO.mockImplementationOnce(
+      throwError('parseISO_error'),
+    );
+    expect(() => sut.map(dto)).toThrowErrorMatchingInlineSnapshot(
+      `[Error: parseISO_error]`,
+    );
   });
 
   it('should return AddWordDTO if valid data is provided', () => {
