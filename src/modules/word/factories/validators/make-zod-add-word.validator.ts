@@ -1,4 +1,4 @@
-import { ZodAddWordValidator } from '../../validations';
+import { ZodAddWordValidator } from '../../validators';
 
 export const makeZodAddWordValidator = () => {
   return new ZodAddWordValidator();

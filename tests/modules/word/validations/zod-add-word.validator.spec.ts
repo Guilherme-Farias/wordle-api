@@ -1,4 +1,4 @@
-import { ZodAddWordValidator } from '@/modules/word/validations';
+import { ZodAddWordValidator } from '@/modules/word/validators';
 import { expectValidationToThrowProps } from '@tests/helpers/functions';
 import { makeAddWordControllerRequest } from '@tests/helpers/mocks';
 
