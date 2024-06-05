@@ -11,8 +11,9 @@ export class ZodAddWordValidator implements IValidation {
     const result = schema.safeParse(params);
 
     if (!result.success) {
-      const params = getFieldErrors(result.error.issues);
-      throw new ValidationError({ params });
+      throw new ValidationError({
+        params: getFieldErrors(result.error.issues),
+      });
     }
   }
 }
