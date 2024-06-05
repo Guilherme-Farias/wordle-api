@@ -3,7 +3,7 @@ import * as dateFns from 'date-fns';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { DateFnsProvider } from '@/shared/providers/date-provider';
-import { throwError } from '@tests/mocks';
+import { throwError } from '@tests/helpers/mocks';
 
 vi.mock('date-fns', () => ({
   parseISO(): Date {
@@ -26,12 +26,12 @@ describe('DateFnsProvider', () => {
       expect(parseISOSpy).toHaveBeenCalledWith(date);
     });
 
-    it('should return a parsed date on success', async () => {
+    it('should return a parsed date on success', () => {
       const parseISO = sut.parseISO(date);
       expect(parseISO).toBe('parse_iso');
     });
 
-    it('should throw if parseISO throws', async () => {
+    it('should throw if parseISO throws', () => {
       vi.spyOn(dateFns, 'parseISO').mockImplementationOnce(throwError);
 
       expect(() => sut.parseISO(date)).toThrow();

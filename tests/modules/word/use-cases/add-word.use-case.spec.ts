@@ -1,7 +1,7 @@
 import { Word } from '@/modules/word/models';
 import { WordRepository } from '@/modules/word/repositories';
 import { AddWordUseCase } from '@/modules/word/use-cases';
-import { makeAddWordUseCaseDTO } from '@tests/mocks';
+import { makeAddWordUseCaseDTO } from '@tests/helpers/mocks';
 import {
   MockProxy,
   describe,

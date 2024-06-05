@@ -1,7 +1,7 @@
+import { faker } from '@faker-js/faker';
+
 import { AddWordControllerAPI } from '@/modules/word/controllers';
 import { AddWordDTO } from '@/modules/word/dtos';
-
-import { faker } from '../utils';
 
 export function makeAddWordControllerRequest(
   dto?: Partial<AddWordControllerAPI.Request>,

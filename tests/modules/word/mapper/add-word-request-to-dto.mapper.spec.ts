@@ -3,7 +3,7 @@ import { describe, beforeEach, expect, it } from 'vitest';
 
 import { AddWordRequestToDTOMapper } from '@/modules/word/mapper';
 import { DateProvider } from '@/shared/providers/date-provider';
-import { makeAddWordControllerRequest, throwError } from '@tests/mocks';
+import { makeAddWordControllerRequest, throwError } from '@tests/helpers/mocks';
 
 describe('AddWordRequestToDTOMapper', () => {
   const dto = makeAddWordControllerRequest();

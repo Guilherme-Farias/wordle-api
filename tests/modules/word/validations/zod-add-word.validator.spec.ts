@@ -1,6 +1,6 @@
 import { ZodAddWordValidator } from '@/modules/word/validations';
 import { ValidationError } from '@/shared/errors';
-import { makeAddWordControllerRequest } from '@tests/mocks';
+import { makeAddWordControllerRequest } from '@tests/helpers/mocks';
 import { beforeEach, describe, expect, it } from '@tests/utils';
 
 describe('ZodAddWordValidator', () => {
