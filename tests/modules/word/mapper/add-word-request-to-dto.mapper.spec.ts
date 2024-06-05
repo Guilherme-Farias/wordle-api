@@ -2,7 +2,7 @@ import { MockProxy, mock } from 'vitest-mock-extended';
 
 import { AddWordRequestToDTOMapper } from '@/modules/word/mapper';
 import { MapperError } from '@/shared/errors';
-import { DateProvider } from '@/shared/providers/date-provider';
+import { DateProvider } from '@/shared/providers/date';
 import { makeAddWordControllerRequest, throwError } from '@tests/helpers/mocks';
 
 describe('AddWordRequestToDTOMapper', () => {

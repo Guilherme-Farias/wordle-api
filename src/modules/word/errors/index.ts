@@ -1,1 +1,1 @@
-export * from './word-date-already-existis.error';
+export * from './word-date-already-exists.error';

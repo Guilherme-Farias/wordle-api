@@ -1,2 +1,2 @@
-export * from './mapper-error';
-export * from './validation-error';
+export * from './mapper.error';
+export * from './validation.error';

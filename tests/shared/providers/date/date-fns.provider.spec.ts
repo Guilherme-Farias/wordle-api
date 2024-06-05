@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import * as dateFns from 'date-fns';
 
-import { DateFnsProvider } from '@/shared/providers/date-provider';
+import { DateFnsProvider } from '@/shared/providers/date';
 import { throwError } from '@tests/helpers/mocks';
 
 vi.mock('date-fns', () => ({

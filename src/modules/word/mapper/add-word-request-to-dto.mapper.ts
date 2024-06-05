@@ -1,6 +1,6 @@
 import { MapperError } from '@/shared/errors';
 import { IMapper } from '@/shared/protocols/mapper';
-import { DateProvider } from '@/shared/providers/date-provider';
+import { DateProvider } from '@/shared/providers/date';
 
 import { AddWordControllerAPI } from '../controllers';
 import { AddWordDTO } from '../dtos';
