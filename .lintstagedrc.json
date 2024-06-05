@@ -1,6 +1,6 @@
 {
   "*.ts": [
     "eslint --fix",
-    "vitest related  --run -c ./vitest-unit.config.mts --passWithNoTests"
+    "vitest related  --run -c ./vitest.unit.config.mts --passWithNoTests"
   ]
 }
