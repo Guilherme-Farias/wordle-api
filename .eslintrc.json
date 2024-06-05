@@ -21,6 +21,7 @@
   ],
   "rules": {
     "prettier/prettier": "error",
+    "require-await": "error",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
