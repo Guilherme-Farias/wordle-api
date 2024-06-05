@@ -3,16 +3,19 @@ import { DateProvider } from '@/shared/providers/date-provider';
 
 import { AddWordControllerAPI } from '../controllers';
 import { AddWordDTO } from '../dtos';
+import { WordString } from '../models';
 
-export class AddWordRequestToDTOMapper
-  implements IMapper<AddWordControllerAPI.Request, AddWordDTO>
-{
+export type IAddWordRequestToDTOMapper = IMapper<
+  AddWordControllerAPI.Request,
+  AddWordDTO
+>;
+export class AddWordRequestToDTOMapper implements IAddWordRequestToDTOMapper {
   constructor(private readonly dateProvider: DateProvider) {}
 
   map(data: AddWordControllerAPI.Request): AddWordDTO {
     return {
-      ...data,
+      word: data.word as WordString,
       date: this.dateProvider.parseISO(data.date),
-    } as AddWordDTO;
+    };
   }
 }
