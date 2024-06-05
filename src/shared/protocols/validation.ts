@@ -1,10 +1,8 @@
-import { ValidationError } from '../errors';
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IParamErrors {
   [param: string]: string;
 }
 
 export interface IValidation<T = any> {
-  validate(params: T): ValidationError | void;
+  validate(params: T): void;
 }

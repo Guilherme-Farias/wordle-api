@@ -12,7 +12,7 @@ export class ZodAddWordValidator implements IValidation {
 
     if (!result.success) {
       const params = getFieldErrors(result.error.issues);
-      return new ValidationError({ params });
+      throw new ValidationError({ params });
     }
   }
 }
