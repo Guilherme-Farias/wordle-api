@@ -1,15 +1,10 @@
+import { beforeEach, describe, expect, it } from 'vitest';
+import { MockProxy, mock } from 'vitest-mock-extended';
+
 import { Word } from '@/modules/word/models';
 import { WordRepository } from '@/modules/word/repositories';
 import { AddWordUseCase } from '@/modules/word/use-cases';
 import { makeAddWordUseCaseDTO } from '@tests/helpers/mocks';
-import {
-  MockProxy,
-  describe,
-  mock,
-  beforeEach,
-  it,
-  expect,
-} from '@tests/utils';
 
 describe('AddWordUseCase', () => {
   const dto = makeAddWordUseCaseDTO();
