@@ -1,3 +1,4 @@
+import { MapperError } from '@/shared/errors';
 import { IMapper } from '@/shared/protocols/mapper';
 import { DateProvider } from '@/shared/providers/date-provider';
 
@@ -13,9 +14,12 @@ export class AddWordRequestToDTOMapper implements IAddWordRequestToDTOMapper {
   constructor(private readonly dateProvider: DateProvider) {}
 
   map(data: AddWordControllerAPI.Request): AddWordDTO {
-    return {
-      word: data.word as WordString,
-      date: this.dateProvider.parseISO(data.date),
-    };
+    try {
+      const word = data.word as WordString;
+      const date = this.dateProvider.parseISO(data.date);
+      return { word, date };
+    } catch {
+      throw new MapperError();
+    }
   }
 }
