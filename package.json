@@ -31,6 +31,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@prisma/client": "5.15.0",
     "date-fns": "3.6.0",
     "dotenv": "16.4.5",
     "zod": "3.23.8"
@@ -53,6 +54,7 @@
     "husky": "9.0.11",
     "lint-staged": "15.2.5",
     "prettier": "3.3.0",
+    "prisma": "5.15.0",
     "supertest": "7.0.0",
     "tsup": "8.1.0",
     "tsx": "4.11.2",
