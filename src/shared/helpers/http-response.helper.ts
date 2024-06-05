@@ -18,6 +18,10 @@ export class HttpResponseHelper {
     const params = props?.params ?? undefined;
     return { statusCode: 400, body: { error, params } };
   }
+  public static forbidden(props?: HttpErrorProps): IHttpResponse {
+    const error = props?.error ?? 'Forbidden';
+    return { statusCode: 403, body: { error } };
+  }
 
   public static internalServerError(props?: HttpErrorProps): IHttpResponse {
     const error = props?.error ?? 'Internal Server Error';
