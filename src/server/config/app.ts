@@ -4,8 +4,10 @@ import { setupMiddlewares } from './middlewares';
 import { setupRoutes } from './routes';
 import { setupSwagger } from './swagger';
 
-const app = express();
-setupSwagger(app);
-setupMiddlewares(app);
-setupRoutes(app);
-export { app };
+export const setupApp = async () => {
+  const app = express();
+  setupSwagger(app);
+  setupMiddlewares(app);
+  await setupRoutes(app);
+  return app;
+};
