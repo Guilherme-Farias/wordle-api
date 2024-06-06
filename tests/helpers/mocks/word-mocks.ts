@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 
 import { AddWordControllerAPI } from '@/modules/word/controllers';
 import { AddWordDTO } from '@/modules/word/dtos';
+import { Word } from '@/modules/word/models';
 
 export function makeAddWordControllerRequest(
   dto?: Partial<AddWordControllerAPI.Request>,
@@ -15,8 +16,17 @@ export function makeAddWordControllerRequest(
 
 export function makeAddWordUseCaseDTO(dto?: Partial<AddWordDTO>): AddWordDTO {
   return {
-    word: faker.word.sample(5),
+    word: faker.word.sample(5).toLowerCase(),
     date: faker.date.soon({ days: 1 }),
     ...dto,
   } as AddWordDTO;
+}
+
+export function makeWord(dto?: Partial<Word>): Word {
+  return {
+    id: faker.string.uuid(),
+    word: faker.word.sample(5).toLowerCase(),
+    date: faker.date.soon({ days: 1 }),
+    ...dto,
+  } as Word;
 }
