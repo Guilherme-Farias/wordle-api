@@ -1,5 +1,6 @@
 // @vitest-environment prisma
 
+import { faker } from '@faker-js/faker';
 import { Express } from 'express';
 import request from 'supertest';
 
@@ -16,6 +17,25 @@ describe('Words routes', () => {
 
   beforeEach(async () => {
     await prisma.word.deleteMany();
+  });
+
+  describe('GET /words/:date', () => {
+    it('should return 200 on create word', async () => {
+      const postResponse = await request(app)
+        .post(path)
+        .send(makeAddWordControllerRequest())
+        .expect(201);
+      const getResponse = await request(app)
+        .get(`${path}/${postResponse.body.word.date}`)
+        .expect(200);
+
+      expect(getResponse.body).toEqual(postResponse.body.word);
+    });
+
+    it('should return 404 if an invalid data is provided', async () => {
+      const dataWithoutWord = faker.date.soon().toISOString();
+      await request(app).get(`${path}/${dataWithoutWord}`).expect(404);
+    });
   });
 
   describe('POST /words', () => {
