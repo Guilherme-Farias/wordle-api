@@ -34,6 +34,20 @@ describe('ExpressRouter', () => {
     expect(controller.handle).toHaveBeenCalledWith({});
     expect(controller.handle).toHaveBeenCalledTimes(1);
   });
+  it('should call handle with merge of body, params, query request', async () => {
+    req = getMockReq({
+      body: { body: 'body' },
+      params: { params: 'params' },
+      query: { query: 'query' },
+    });
+    await sut(req, res, next);
+    expect(controller.handle).toHaveBeenCalledWith({
+      body: 'body',
+      params: 'params',
+      query: 'query',
+    });
+    expect(controller.handle).toHaveBeenCalledTimes(1);
+  });
 
   it('should respond with 200 and valid data', async () => {
     controller.handle.mockResolvedValueOnce(
