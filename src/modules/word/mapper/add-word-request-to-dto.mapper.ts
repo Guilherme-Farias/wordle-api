@@ -15,8 +15,8 @@ export class AddWordRequestToDTOMapper implements IAddWordRequestToDTOMapper {
 
   map(data: AddWordControllerAPI.Request): AddWordDTO {
     try {
-      const word = data.word as WordString;
-      const date = this.dateProvider.parseISO(data.date);
+      const word = data.word.toLowerCase() as WordString;
+      const date = this.dateProvider.startOfDay(data.date);
       return { word, date };
     } catch {
       throw new MapperError();

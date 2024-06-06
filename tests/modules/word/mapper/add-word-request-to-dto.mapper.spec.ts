@@ -14,7 +14,7 @@ describe('AddWordRequestToDTOMapper', () => {
 
   const makeDateProviderMock = () => {
     dateProviderMock = mock<DateProvider>();
-    dateProviderMock.parseISO.mockReturnValue(parsed_date);
+    dateProviderMock.startOfDay.mockReturnValue(parsed_date);
     return dateProviderMock;
   };
 
@@ -22,18 +22,21 @@ describe('AddWordRequestToDTOMapper', () => {
     sut = new AddWordRequestToDTOMapper(makeDateProviderMock());
   });
 
-  it('should call DateProvider.parseISO with correct values', () => {
+  it('should call DateProvider.startOfDay with correct values', () => {
     sut.map(dto);
-    expect(dateProviderMock.parseISO).toHaveBeenCalledWith(dto.date);
-    expect(dateProviderMock.parseISO).toReturnWith(parsed_date);
+    expect(dateProviderMock.startOfDay).toHaveBeenCalledWith(dto.date);
+    expect(dateProviderMock.startOfDay).toReturnWith(parsed_date);
   });
 
-  it('should rethrow if DateProvider.parseISO throws', () => {
-    dateProviderMock.parseISO.mockImplementationOnce(throwError());
+  it('should rethrow if DateProvider.startOfDay throws', () => {
+    dateProviderMock.startOfDay.mockImplementationOnce(throwError());
     expect(() => sut.map(dto)).toThrowError(MapperError);
   });
 
   it('should return AddWordDTO if valid data is provided', () => {
-    expect(sut.map(dto)).toEqual({ word: dto.word, date: parsed_date });
+    expect(sut.map(dto)).toEqual({
+      word: dto.word.toLowerCase(),
+      date: parsed_date,
+    });
   });
 });
