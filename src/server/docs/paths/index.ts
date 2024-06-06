@@ -1,5 +1,5 @@
-import { word } from './words';
+import words from './words';
 
 export const paths = {
-  ...word,
+  ...words,
 };

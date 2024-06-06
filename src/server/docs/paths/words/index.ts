@@ -1,7 +1,9 @@
 import { OpenAPIV3 } from 'openapi-types';
 
-import { post } from './post';
+import * as words from './words';
+import * as wordsByDate from './words-by-date';
 
-export const word: OpenAPIV3.PathsObject = {
-  '/words': { post },
+export default <OpenAPIV3.PathsObject>{
+  '/words': words,
+  '/words/{date}': wordsByDate,
 };

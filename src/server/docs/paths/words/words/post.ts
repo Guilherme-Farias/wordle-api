@@ -20,7 +20,11 @@ export const post: OpenAPIV3.OperationObject = {
       content: {
         'application/json': {
           schema: {
-            $ref: '#/schemas/word',
+            properties: {
+              word: {
+                $ref: '#/schemas/word',
+              },
+            },
           },
         },
       },
