@@ -1,7 +1,7 @@
 import { IHttpResponse, IParamErrors } from '../protocols';
 
 type HttpErrorProps = {
-  error?: string;
+  message?: string;
 };
 
 type BadRequestProps = HttpErrorProps & {
@@ -22,23 +22,23 @@ export class HttpResponseHelper {
   }
 
   public static badRequest(props?: BadRequestProps): IHttpResponse {
-    const error = props?.error ?? 'Bad Request';
-    const params = props?.params ?? undefined;
-    return { statusCode: 400, body: { error, params } };
+    const error = props?.message ?? 'Bad Request';
+    const params = props?.params ? { params: props.params } : {};
+    return { statusCode: 400, body: { error, ...params } };
   }
 
   public static forbidden(props?: HttpErrorProps): IHttpResponse {
-    const error = props?.error ?? 'Forbidden';
+    const error = props?.message ?? 'Forbidden';
     return { statusCode: 403, body: { error } };
   }
 
   public static notFound(props?: HttpErrorProps): IHttpResponse {
-    const error = props?.error ?? 'Not Found';
+    const error = props?.message ?? 'Not Found';
     return { statusCode: 404, body: { error } };
   }
 
   public static internalServerError(props?: HttpErrorProps): IHttpResponse {
-    const error = props?.error ?? 'Internal Server Error';
+    const error = props?.message ?? 'Internal Server Error';
     return { statusCode: 500, body: { error } };
   }
 }

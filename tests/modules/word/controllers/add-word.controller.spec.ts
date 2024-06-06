@@ -4,13 +4,14 @@ import {
   AddWordController,
   AddWordControllerAPI,
 } from '@/modules/word/controllers';
+import { WordDateAlreadyExistisError } from '@/modules/word/errors';
 import { IAddWordRequestToDTOMapper } from '@/modules/word/mapper';
 import { WordId, WordString } from '@/modules/word/models';
 import { IAddWordUseCase } from '@/modules/word/use-cases';
+import { MapperError, ValidationError } from '@/shared/errors';
+import { HttpResponseHelper } from '@/shared/helpers';
 import { IValidation } from '@/shared/protocols';
 import { makeAddWordControllerRequest, throwError } from '@tests/helpers/mocks';
-import { HttpResponseHelper } from '@/shared/helpers';
-import { WordDateAlreadyExistisError } from '@/modules/word/errors';
 
 describe('AddWordController', () => {
   let sut: AddWordController;
@@ -53,40 +54,26 @@ describe('AddWordController', () => {
     );
   });
 
-  it('should call IValidation with correct values', async () => {
-    await sut.handle(httpRequest);
-    expect(validatorMock.validate).toHaveBeenCalledWith(httpRequest);
-    expect(validatorMock.validate).not.toThrowError();
+  it('should return 400 if IValidation throws', async () => {
+    const error = new ValidationError({ params: { param: 'any_error' } });
+    validatorMock.validate.mockImplementation(throwError(error));
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse).toEqual(HttpResponseHelper.badRequest(error));
   });
 
-  it('should rethrow if IValidation throws', async () => {
-    validatorMock.validate.mockImplementationOnce(
-      throwError('validator_error'),
-    );
-    const promise = sut.handle(httpRequest);
-    await expect(promise).rejects.toThrowError('validator_error');
-  });
-
-  it('should call IMapper with correct values', async () => {
-    await sut.handle(httpRequest);
-    expect(mapperMock.map).toHaveBeenCalledWith(httpRequest);
-    expect(mapperMock.map).not.toThrowError();
-  });
-
-  it('should rethrow if IMapper throws', async () => {
-    mapperMock.map.mockImplementationOnce(throwError('mapper_error'));
-    const promise = sut.handle(httpRequest);
-    await expect(promise).rejects.toThrowError('mapper_error');
+  it('should return 400 if IMapper throws', async () => {
+    const error = new MapperError();
+    mapperMock.map.mockImplementationOnce(throwError(error));
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse).toEqual(HttpResponseHelper.badRequest(error));
   });
 
   it('should return 403 if IAddWordUseCase throws WordDateAlreadyExistisError', async () => {
     const error = new WordDateAlreadyExistisError();
     useCaseMock.execute.mockRejectedValueOnce(error);
-
     const httpResponse = await sut.handle(httpRequest);
-
     expect(httpResponse).toEqual(
-      HttpResponseHelper.forbidden({ error: error.message }),
+      HttpResponseHelper.forbidden({ message: error.message }),
     );
   });
 
@@ -94,7 +81,7 @@ describe('AddWordController', () => {
     useCaseMock.execute.mockRejectedValueOnce(new Error('not_mapped_error'));
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse).toEqual(
-      HttpResponseHelper.internalServerError({ error: 'Erro no servidor' }),
+      HttpResponseHelper.internalServerError({ message: 'Erro no servidor' }),
     );
   });
 

@@ -1,5 +1,6 @@
 import { HttpResponseHelper } from '@/shared/helpers';
 import { IController, IHttpResponse, IValidation } from '@/shared/protocols';
+import { MapperError, ValidationError } from '@/shared/errors';
 
 import { IAddWordRequestToDTOMapper } from '../mapper';
 import { Word } from '../models';
@@ -29,18 +30,20 @@ export class AddWordController
   async handle(
     request: AddWordControllerAPI.Request,
   ): Promise<IHttpResponse<AddWordControllerAPI.Response>> {
-    this.validator.validate(request);
-    const dto = this.mapper.map(request);
-
     try {
+      this.validator.validate(request);
+      const dto = this.mapper.map(request);
       const word = await this.addWordUseCase.execute(dto);
       return HttpResponseHelper.created({ word });
     } catch (error) {
       if (error instanceof WordDateAlreadyExistisError) {
-        return HttpResponseHelper.forbidden({ error: error.message });
+        return HttpResponseHelper.forbidden({ message: error.message });
+      }
+      if (error instanceof ValidationError || error instanceof MapperError) {
+        return HttpResponseHelper.badRequest(error);
       }
       return HttpResponseHelper.internalServerError({
-        error: 'Erro no servidor',
+        message: 'Erro no servidor',
       });
     }
   }
