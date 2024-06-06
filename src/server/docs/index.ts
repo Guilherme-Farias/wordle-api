@@ -5,6 +5,7 @@ import { externalDocs } from './external-docs';
 import { info } from './info';
 import { paths } from './paths';
 import { schemas } from './schemas';
+import { servers } from './servers';
 import { tags } from './tags';
 
 export default <OpenAPIV3.Document>{
@@ -15,4 +16,5 @@ export default <OpenAPIV3.Document>{
   schemas,
   components,
   paths,
+  servers,
 };
