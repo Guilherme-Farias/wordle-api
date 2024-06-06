@@ -3,7 +3,7 @@
 import { Express } from 'express';
 import request from 'supertest';
 
-import { prisma } from '@/infra/prisma/prisma';
+import { prisma } from '@/infra/db';
 import { setupApp } from '@/server/config/app';
 import { makeAddWordControllerRequest } from '@tests/helpers/mocks';
 

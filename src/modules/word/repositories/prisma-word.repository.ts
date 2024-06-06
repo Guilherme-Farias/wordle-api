@@ -1,4 +1,4 @@
-import { prisma } from '@/infra/prisma/prisma';
+import { prisma } from '@/infra/db';
 
 import { AddWordDTO } from '../dtos';
 import { Word } from '../models';

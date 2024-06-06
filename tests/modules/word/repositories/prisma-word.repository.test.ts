@@ -2,7 +2,7 @@
 
 import { faker } from '@faker-js/faker';
 
-import { prisma } from '@/infra/prisma/prisma';
+import { prisma } from '@/infra/db';
 import { PrismaWordRepository } from '@/modules/word/repositories';
 import { makeAddWordUseCaseDTO } from '@tests/helpers/mocks';
 
