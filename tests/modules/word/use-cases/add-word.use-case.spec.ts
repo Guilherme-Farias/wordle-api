@@ -1,6 +1,6 @@
 import { MockProxy, mock } from 'vitest-mock-extended';
 
-import { WordDateAlreadyExistisError } from '@/modules/word/errors';
+import { WordDateAlreadyExistsError } from '@/modules/word/errors';
 import { WordId, WordString } from '@/modules/word/models';
 import { WordRepository } from '@/modules/word/repositories';
 import { AddWordUseCase } from '@/modules/word/use-cases';
@@ -37,7 +37,7 @@ describe('AddWordUseCase', () => {
   it('should throw WordDateAlreadyExistisError if WordRepository.findByDate return word', async () => {
     wordRepositoryMock.findByDate.mockReturnValueOnce(Promise.resolve(word));
     const promise = sut.execute(dto);
-    await expect(promise).rejects.toThrowError(WordDateAlreadyExistisError);
+    await expect(promise).rejects.toThrowError(WordDateAlreadyExistsError);
   });
 
   it('should call WordRepository.create with correct values', async () => {

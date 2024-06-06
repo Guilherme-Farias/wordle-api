@@ -1,4 +1,4 @@
-export class WordDateAlreadyExistisError extends Error {
+export class WordDateAlreadyExistsError extends Error {
   constructor() {
     super('Já existe uma palavra para data selecionada');
   }

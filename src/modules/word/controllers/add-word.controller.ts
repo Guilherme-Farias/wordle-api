@@ -5,7 +5,7 @@ import { MapperError, ValidationError } from '@/shared/errors';
 import { IAddWordRequestToDTOMapper } from '../mapper';
 import { Word } from '../models';
 import { IAddWordUseCase } from '../use-cases';
-import { WordDateAlreadyExistisError } from '../errors';
+import { WordDateAlreadyExistsError } from '../errors';
 
 export namespace AddWordControllerAPI {
   export type Request = {
@@ -36,7 +36,7 @@ export class AddWordController
       const word = await this.addWordUseCase.execute(dto);
       return HttpResponseHelper.created({ word });
     } catch (error) {
-      if (error instanceof WordDateAlreadyExistisError) {
+      if (error instanceof WordDateAlreadyExistsError) {
         return HttpResponseHelper.forbidden({ message: error.message });
       }
       if (error instanceof ValidationError || error instanceof MapperError) {

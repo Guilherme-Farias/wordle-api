@@ -4,7 +4,7 @@ import {
   AddWordController,
   AddWordControllerAPI,
 } from '@/modules/word/controllers';
-import { WordDateAlreadyExistisError } from '@/modules/word/errors';
+import { WordDateAlreadyExistsError } from '@/modules/word/errors';
 import { IAddWordRequestToDTOMapper } from '@/modules/word/mapper';
 import { WordId, WordString } from '@/modules/word/models';
 import { IAddWordUseCase } from '@/modules/word/use-cases';
@@ -69,7 +69,7 @@ describe('AddWordController', () => {
   });
 
   it('should return 403 if IAddWordUseCase throws WordDateAlreadyExistisError', async () => {
-    const error = new WordDateAlreadyExistisError();
+    const error = new WordDateAlreadyExistsError();
     useCaseMock.execute.mockRejectedValueOnce(error);
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse).toEqual(
