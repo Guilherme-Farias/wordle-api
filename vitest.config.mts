@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     globals: true,
     coverage: {
-      include: ['src/**'],
+      include: ['src/**', '!src/**/index.ts', '!src/server/server.ts'],
     },
   },
 });
