@@ -1,7 +1,7 @@
 import { OpenAPIV3 } from 'openapi-types';
 
 export const post: OpenAPIV3.OperationObject = {
-  tags: ['Words'],
+  tags: ['Word'],
   summary: 'Add a new word to the game',
   description: 'This operation allows adding a new secret word to the game.',
   requestBody: {
