@@ -13,7 +13,7 @@ export class GetWordRequestToDateMapper implements IGetWordRequestToDateMapper {
 
   map(request: GetWordControllerAPI.Request): Date {
     try {
-      const date = this.dateProvider.startOfDay(request);
+      const date = this.dateProvider.startOfDay(request.date);
       return date;
     } catch {
       throw new MapperError();

@@ -18,7 +18,9 @@ import { makeWord, throwError } from '@tests/helpers/mocks';
 
 describe('GetWordController', () => {
   let sut: GetWordController;
-  const httpRequest = faker.date.soon().toISOString();
+  const httpRequest = {
+    date: faker.date.soon().toISOString(),
+  };
   let validatorMock: MockProxy<IValidation<GetWordControllerAPI.Request>>;
   let mapperMock: MockProxy<IGetWordRequestToDateMapper>;
   let useCaseMock: MockProxy<IGetWordByDateUseCase>;

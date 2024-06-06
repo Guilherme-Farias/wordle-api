@@ -11,7 +11,9 @@ import { Word } from '../models';
 import { IGetWordByDateUseCase } from '../use-cases';
 
 export namespace GetWordControllerAPI {
-  export type Request = string;
+  export type Request = {
+    date: string;
+  };
   export type Response = Word;
 }
 

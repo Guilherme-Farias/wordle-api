@@ -24,17 +24,17 @@ describe('GetWordRequestToDateMapper', () => {
   });
 
   it('should call DateProvider.startOfDay with correct values', () => {
-    sut.map(date);
+    sut.map({ date });
     expect(dateProviderMock.startOfDay).toHaveBeenCalledWith(date);
     expect(dateProviderMock.startOfDay).toReturnWith(parsed_date);
   });
 
   it('should rethrow if DateProvider.startOfDay throws', () => {
     dateProviderMock.startOfDay.mockImplementationOnce(throwError());
-    expect(() => sut.map(date)).toThrowError(MapperError);
+    expect(() => sut.map({ date })).toThrowError(MapperError);
   });
 
   it('should return Date if valid ISOString is provided', () => {
-    expect(sut.map(date)).toEqual(parsed_date);
+    expect(sut.map({ date })).toEqual(parsed_date);
   });
 });
